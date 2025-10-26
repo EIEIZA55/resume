@@ -1,13 +1,163 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* === THEME === */
+:root{
+  --bg:#f9f7f1; --bg2:#f5f2eb;
+  --text:#2c2c2c; --muted:#7d7d7d;
+  --accent:#e4c27b; --accent-2:#caa948;
+  --nav-h:72px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* === BASE === */
+*{box-sizing:border-box}
+html,body,#root,.app{height:100%}
+html{scroll-behavior:smooth; scroll-snap-type:y proximity}
+body{margin:0; font-family:Inter, system-ui, sans-serif; color:var(--text); background:linear-gradient(to bottom,var(--bg),var(--bg2))}
+a{color:inherit; text-decoration:none}
+.content{padding:0}
+
+/* === NAVBAR === */
+.navbar{
+  position:sticky; top:0; z-index:10;
+  background:rgba(240, 209, 143, 0.979);
+  backdrop-filter:saturate(160%) blur(10px);
+  border-bottom:1px solid rgba(45, 48, 196, 0.06);
+  transform:translateY(0);
+  transition:transform .28s ease, box-shadow .2s ease;
+}
+.navbar.nav-hidden{transform:translateY(-110%) !important}
+.navbar.scrolled{box-shadow:0 10px 22px rgba(0,0,0,.06)}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; padding:30px}
+.brand {
+  font-weight: 900;
+  font-size: clamp(50px, 7vw, 38px);
+  font-style: italic;
+  letter-spacing: 0.6px;
+  color: #000000; /* ✅ สีใหม่ที่คุณต้องการ */
+}
+
+/* ลิงก์เมนูขวา */
+.nav-link {
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  padding: 40px 30px;
+  border-radius: 12px;
+  color: #333333; /* ✅ สีใหม่ที่คุณต้องการ */
+  border: 1px solid transparent;
+  transition: 0.15s;
+}
+
+.nav-link:hover {
+  color: #6b411a6c; /* ✅ สีเมื่อชี้เมาส์ */
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* === SECTIONS (เต็มจอ + snap) === */
+.section{
+  min-height:calc(100vh - var(--nav-h));
+  scroll-margin-top:var(--nav-h);
+  scroll-snap-align:start;
+  display:grid; align-content:center;
+  padding-block:clamp(32px,6vw,64px);
+  background:#fff; color:#2c2c2c;
+}
+.section-works{background:#f5f2eb; box-shadow:inset 0 6px 10px rgba(0, 0, 0, 0.04)}
+.section-title{font-size:28px; margin:0 0 10px}
+.lead{color:var(--muted); margin:0 0 20px}
+
+/* คอนเทนเนอร์ภายในโซน */
+.section-inner{width:min(1200px,92%); margin-inline:auto; padding-inline:clamp(16px,4vw,32px)}
+
+/* === HERO (Home) === */
+.section-home{background:#fff; color:#6b5e41}
+.hero{position:relative}
+.hero-inner{
+  width:min(1280px, 94%);
+  margin-inline:auto;
+  padding-inline: clamp(32px, 8vw, 96px); /* กันชิดขอบซ้าย/ขวา */
+}
+.role-badge{position:absolute; top:10px; right:24px; font-size:12.5px; font-weight:600; letter-spacing:.25px; opacity:.85}
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;         /* ซ้ายกว้างกว่าหน่อย */
+  gap: clamp(32px, 7vw, 120px);             /* ช่องไฟระหว่างคอลัมน์ */
+  align-items: center;                       /* จัดกลางตามแนวตั้ง */
+  min-height: calc(100vh - var(--nav-h));    /* ให้กินความสูงเกือบเต็มจอ */
+}
+.display-name{margin:0 0 18px; font-weight:900; line-height:.86; letter-spacing:-.02em; font-size:clamp(48px,12vw,140px)}
+.display-name .first,.display-name .last{display:block}
+.intro{ margin: 10px 0 clamp(16px, 2.2vw, 24px); }
+.hero-actions{ margin-top: 4px; }
+.hero-left { max-width: 46ch; }
+.hero-right{ max-width: 52ch; }
+.hero-actions{margin-top:6px}
+@media (max-width:860px){
+  .hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(24px, 6vw, 80px);
+  align-items: start;
+  width: 100%;
+
+  /* 👇 อันนี้คือสิ่งที่เพิ่ม/ปรับ */
+  padding-inline: clamp(10x, 20px 15px); /* เพิ่มระยะขอบซ้าย/ขวาให้หายแน่น */
+}
+
+  .role-badge{right:16px}
+  .display-name{
+  margin: 0 0 clamp(10px, 2vw, 16px);
+  line-height: .86;
+  letter-spacing: -0.015em;
+  font-size: clamp(56px, 11vw, 132px);
+}
+  .hero-right{margin-top:8px}
+}
+
+/* === SERVICES (แนวตั้ง: Coding / DevOps) === */
+.section-works .section-title{
+  font-size:clamp(34px,5vw,56px);
+  font-weight:800; letter-spacing:-.5px; margin-bottom:12px;
+}
+.section-works .lead{
+  font-size:clamp(16px,1.8vw,20px); margin-bottom:28px; color:#666;
+}
+
+/* กล่องบริการวางแนวตั้งและจัดกลาง */
+.services-vertical{display:flex; flex-direction:column; gap:clamp(24px,4vw,40px); margin-top:28px}
+.services-vertical .service-card{width:100%; max-width:800px; margin-inline:auto}
+
+/* การ์ดบริการ + รายการสกิล */
+.service-card{
+  background:#fff; border-radius:16px;
+  padding:clamp(18px,3vw,24px);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 12px 26px rgba(0,0,0,.06);
+}
+.service-header{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center; margin-bottom:10px}
+.service-index{font-size:12px; font-weight:700; opacity:.6}
+.service-icon-title{display:flex; align-items:center; font-weight:800; letter-spacing:.3px; font-size:clamp(20px,2.2vw,24px)}
+.service-sub{margin:4px 0 10px; font-size:14px; color:#666}
+
+.skill-list{list-style:none; padding:0; margin:0; border-top:1px solid rgba(0,0,0,.06)}
+.skill-row{display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(0,0,0,.06)}
+.skill-row span{font-size:16.5px}
+.skill-row svg{font-size:18px; opacity:.9}
+
+/* === GRID + CARD (ทั่วไป) — ใช้กับส่วนอื่นถ้ามี === */
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+.card{background:#fff; border:1px solid rgba(0,0,0,.08); padding:18px; border-radius:18px; box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.card h3{margin:0 0 8px}
+
+/* === BUTTONS === */
+.btn{display:inline-block; padding:10px 14px; border-radius:12px; background:var(--accent); color:#2c2c2c; border:1px solid rgba(0,0,0,.1); transition:filter .15s}
+.btn:hover{filter:brightness(1.08)}
+.btn.outline{background:transparent; color:var(--accent-2); border:1px solid var(--accent-2)}
+.btn.ghost{background:transparent; color:var(--muted)}
+
+/* === FOOTER === */
+.footer{opacity:.75; text-align:center; padding:14px 0; border-top:1px solid rgba(0,0,0,.06)}
+
+/* เพิ่มระยะซ้าย-ขวาของ Hero ทั้งบล็อก */
+#home .section-inner{
+  padding-left: clamp(64px, 10vw, 140px) !important;
+  padding-right: clamp(64px, 10vw, 140px) !important;
 }
