@@ -80,6 +80,9 @@ export default function PortfolioPage() {
             <a className="nav-link" href="#education">
               Education
             </a>
+            <a className="nav-link" href="#achievement">
+              Achievement
+            </a>
             <a className="nav-link" href="#works">
               Services
             </a>
@@ -623,6 +626,100 @@ export default function PortfolioPage() {
           </div>
         </section>
 
+        {/* =========== ACHIEVEMENT SECTION =========== */}
+        <section
+          id="achievement"
+          style={{
+            backgroundColor: "#fdfaf4", // ✅ เปลี่ยนให้เข้าธีม warm tone
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "80px 0",
+          }}
+        >
+          {/* หัวข้อหลัก */}
+          <h2
+            style={{
+              fontSize: "clamp(36px, 4vw, 48px)",
+              fontWeight: 800,
+              color: "#2e2b23", // ✅ ใช้สีเดียวกับหัวข้อ Education
+              textAlign: "center",
+              marginBottom: "40px",
+            }}
+          >
+            ACHIEVEMENT
+          </h2>
+
+          {/* รายการผลงาน */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "40px",
+              maxWidth: "1000px",
+              width: "100%",
+              padding: "0 20px",
+            }}
+          >
+            {/* การ์ด #1 */}
+            <div
+              style={{
+                background: "#ffffff",
+                borderRadius: "20px",
+                boxShadow: "0 12px 28px rgba(0,0,0,0.07)", // ✅ เงาอบอุ่น นุ่มกว่าเดิม
+                padding: "24px",
+                textAlign: "center",
+                transition: "transform 0.25s ease, box-shadow 0.25s ease",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = "translateY(-8px)";
+                e.currentTarget.style.boxShadow =
+                  "0 18px 35px rgba(0,0,0,0.12)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow =
+                  "0 12px 28px rgba(0,0,0,0.07)";
+              }}
+            >
+              <img
+                src="/img/cdg.jpg"
+                alt="Hackathon 2025"
+                style={{
+                  width: "75%",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: "7px",
+                  marginBottom: "5px",
+                }}
+              />
+              <h3
+                style={{
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  color: "#3f3a2b", // ✅ สีเดียวกับส่วน Education
+                  marginBottom: "6px",
+                }}
+              >
+                1st Place in Hackathon 2025 Tokio Marine
+              </h3>
+              <p
+                style={{
+                  color: "#bfa044", // ✅ สีทองอ่อน เข้ากับธีม
+                  fontWeight: 600,
+                  marginBottom: "4px",
+                }}
+              >
+                FinTech
+              </p>
+              <p style={{ color: "#7a7463", fontSize: "14px" }}>2025</p>
+            </div>
+
+          </div>
+        </section>
+
         {/* =========== CONTACT =========== */}
         <section
           id="contact"
@@ -771,7 +868,9 @@ export default function PortfolioPage() {
         </section>
       </main>
 
-      <footer className="footer">© {new Date().getFullYear()} Tanupat Thalalerg</footer>
+      <footer className="footer">
+        © {new Date().getFullYear()} Tanupat Thalalerg
+      </footer>
     </div>
   );
 }
