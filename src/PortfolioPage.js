@@ -529,7 +529,7 @@ export default function PortfolioPage() {
                 }}
               >
                 <a
-                  href="/img/transcript000.jpg" // ✅ ลิงก์รูปแทน PDF
+                  href="/img/transcript.jpg" // ✅ ลิงก์รูปแทน PDF
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
