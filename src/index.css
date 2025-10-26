@@ -161,3 +161,31 @@ a{color:inherit; text-decoration:none}
   padding-left: clamp(64px, 10vw, 140px) !important;
   padding-right: clamp(64px, 10vw, 140px) !important;
 }
+.education-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 0;
+}
+
+.edu-logo img {
+  width: 60px; /* ปรับขนาดได้ตามใจ */
+  height: 60px;
+  border-radius: 50%; /* ถ้าอยากให้เป็นวงกลม */
+  object-fit: cover;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.edu-info h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #4b3f25;
+  margin: 0;
+}
+
+.edu-info p {
+  font-size: 0.9rem;
+  color: #5a5a5a;
+  margin: 3px 0;
+}
+
